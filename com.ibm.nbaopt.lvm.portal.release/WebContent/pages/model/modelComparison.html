@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>Model Comparison</title>
+<link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon" />
+<link href="../../style/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../style/css/bootstrap/bootstrap-theme.min.css"
+	rel="stylesheet">
+<link href="../../style/css/dashboard.css" rel="stylesheet">
+<script type="text/javascript" src="../../script/jquery-1.8.2.min.js"></script>
+<script type="text/javascript"
+	src="../../script/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.time.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.symbol.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.axislabels.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.navigate.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.crosshair.js"></script>
+	<script	type="text/javascript" src="../../script/chart/tooltipMessage.js"></script>	
+<script src="../../script/chart/modelLiftChart.js"></script>
+<script	type="text/javascript" src="../../script/chart/tooltip.js"></script>
+<script	type="text/javascript" src="../../script/chart/iterationAdvantageChart.js"></script>
+<script	type="text/javascript" src="../../script/model/modelComparison.js"></script>
+<script	type="text/javascript" src="../../script/chart/sequenceStackChart.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<p class="mynavbar-text" >IBM Next Best Action</p>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="../trailsList.html">Home</a></li>
+			    </ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li style="padding:15px">
+						<img alt="IBM Logo" src="../../image/headerLogo.png">
+					</li>         			
+			    </ul>
+
+	</nav>
+
+	<div id="tabs" class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar tabs">
+					<li id="lift" class="active"><a href="#tabs-1">Model Chart</a></li>
+					<li id="advantage"><a href="#tabs-2">Convergence Chart</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="tabs-1"
+			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab_content">
+			<h1 class="page-header" >Lift Comparison
+			<a role="button" id="viewGain" href="javascript:void(0)" data-toggle="modal" data-target="#myModal" style="float:right">
+  				<span class="glyphicon_liftcomparison glyphicon-th-large" aria-hidden="false">Show</span>
+			</a>
+			</h1>
+			<!-- <button id="viewGain" class="btn btn-default" style="float:right" type="button">View Gain Chart</button> -->
+		     <!-- Button trigger modal -->
+			
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Iteration Gain Slider</h4>
+			      </div>
+			      <div class="modal-body">
+			        	<div id="gainChartGroup" class="carousel slide" data-interval="false"
+							data-ride="carousel" style="display:none">
+							<div class="carousel-inner" id="gainChartList" role="listbox">
+							</div>	
+						</div>
+			      </div>
+			      <div class="modal-footer"> 
+			      <a href="#gainChartGroup" role="button" data-slide="prev">
+			       <span class="glyphicon glyphicon-chevron-left"></span> 
+			       <span class="sr-only">Previous</span>
+				 </a> 
+				 <a href="#gainChartGroup" role="button" data-slide="next">
+				 <span  class="glyphicon glyphicon-chevron-right"></span> 
+				 <span  class="sr-only">Next</span>
+				 </a>
+			     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- end -->
+		
+		</div>
+		<div id="tabs-2"
+			class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab_content">
+			<h1 class="page-header">Convergence Chart</h1>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<link href="../../style/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="../../style/css/jquery.multiselect.css" rel="stylesheet">
+<link href="../../style/css/jquery-ui.css" rel="stylesheet">
+<script type="text/javascript" src="../../script/jquery-ui-1.8.24.custom.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.multiselect.min.js"></script>
+<script type="text/javascript" src="../../script/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../../script/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../../script/chart/tooltip.js"></script>
+<div class="page-header">
+	<h1>
+		<label id="customerAnalysis">Customer Analysis</label>
+		<small  id="description2">The circle the red,the value the lower.The size of the circle indicates the segments number.The color of line the black,the transition rate the bigger.Click on a segment to see it's details.</small>
+	</h1>
+</div>
+<div class="row">
+	<div class="col-xs-5 col-lg-3">
+		<!-- segment filter begin -->
+		<table id="filterContent">
+			<tr id="filterBody">
+				<td>
+					<span style="font-size: 30px;font-weight:normal;color: #6691D1;" id="selectCustomer">Select Customer</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="feature1" style="height:26px; width: 100px;">
+						<option value="feature1">Feature 1</option>
+					</select>
+					<select name="operators1" style="height:26px; width: 50px;">
+						<option value="<">&lt;</option>
+						<option value="<=">&lt;=</option>
+						<option value="=">=</option>
+						<option value=">">&gt;</option>
+						<option value=">=">&gt;=</option>
+						<option value="!=">!=</option>
+					</select>
+					<input type="text"id="segment1" name="segment1" style="width:80px;" value="seg 1">
+					<a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="feature2" style="height:26px; width: 100px;">
+						<option value="feature2">Feature 2</option>
+					</select>
+					<select name="operators2" style="height:26px; width: 50px;">
+						<option value="<">&lt;</option>
+						<option value="<=">&lt;=</option>
+						<option value="=">=</option>
+						<option value=">">&gt;</option>
+						<option value=">=">&gt;=</option>
+						<option value="!=">!=</option>
+					</select>
+					<input type="text"id="segment2" name="segment2" style="width:80px;" value="seg 1">
+					<a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="feature3" style="height:26px; width: 100px;">
+						<option value="feature3">Feature 3</option>
+					</select>
+					<select name="operators3" style="height:26px; width: 50px;">
+						<option value="<">&lt;</option>
+						<option value="<=">&lt;=</option>
+						<option value="=">=</option>
+						<option value=">">&gt;</option>
+						<option value=">=">&gt;=</option>
+						<option value="!=">!=</option>
+					</select>
+					<input type="text"id="segment3" name="segment3" style="width:80px;" value="seg 1">
+					<a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<select name="feature4" style="height:26px; width: 100px;">
+						<option value="feature4">Feature 4</option>
+					</select>
+					<select name="operators4" style="height:26px; width: 50px;">
+						<option value="<">&lt;</option>
+						<option value="<=">&lt;=</option>
+						<option value="=">=</option>
+						<option value=">">&gt;</option>
+						<option value=">=">&gt;=</option>
+						<option value="!=">!=</option>
+					</select>
+					<input type="text"id="segment4" name="segment4" style="width:80px;" value="seg 1">
+					<a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button id="add">Add More</button>
+					&nbsp;&nbsp;&nbsp;
+					<button id="search">Search</button>
+				</td>
+			</tr>
+		</table>
+		<!-- segment filter end -->
+	</div>
+	<div class="col-xs-7 col-lg-9 segmentInfo-Table">
+		<table class='table table-striped' style='margin-bottom:0;'>
+			<thead>
+				<tr>
+					<th>Customer ID</th>
+					<th>Feature 1</th>
+					<th>Feature 2</th>
+					<th>Feature 3</th>
+					<th>Feature 4</th>
+				</tr>
+			</thead>
+		</table>
+		<table class='table table-striped table-hover' role='table-ctxt'>
+			<tbody>
+				<tr>
+					<td><a href="#" data-toggle="modal" data-target=".customerAnalysisModal">TX1212321</a></td>
+					<td>100</td>
+					<td>120</td>
+					<td>100</td>
+					<td>100</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>		
+<div id="customerAnalysisModalWindow" class="modal fade customerAnalysisModal" role="dialog" aria-labelledby="customerAnalysisModalWindow">
+	<div class="modal-dialog modal-lg" style="width: 900px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				&nbsp;
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<div class="row" style="min-height: 350px;">
+					<div class="col-xs-5">
+						<input type="checkbox" id="showOnlyChangedFeature" checked="checked"><label for="showOnlyChangedFeature" id="label_showOnlyChangedFeature">Show Only Changed Feature</label><br/>
+						<div class="row" style="margin-left: 5px;">
+						<SPAN id="fromDate" class="input-append col-xs-6" style="padding: 2px;">
+							<label>From: </label>
+							<input data-format="yyyy-MM-dd" type="text" style="width: 100px;" readonly></input>
+							<span class="add-on" style="cursor: pointer;">
+								<i data-time-icon="glyphicon glyphicon-calendar" data-date-icon="glyphicon glyphicon-calendar"></i>
+							</span>
+						</SPAN>
+						<SPAN id="toDate" class="input-append col-xs-6" style="padding: 2px;">
+							<label>To: </label>
+							<input data-format="yyyy-MM-dd" type="text" style="width: 100px;" readonly></input>
+							<span class="add-on" style="cursor: pointer;">
+								<i data-time-icon="glyphicon glyphicon-calendar" data-date-icon="glyphicon glyphicon-calendar"></i>
+							</span>
+						</SPAN>
+						</div>
+						<script type="text/javascript">
+							$(function() {
+								$('#fromDate').datetimepicker({
+									id: "fromDatePicker",
+									pickTime: false,
+									language: $.i18n.browserLang()
+								}).on('changeDate', function(e) {
+								  	$('div.bootstrap-datetimepicker-widget.dropdown-menu').attr("style","display:none");
+								  
+								});
+								$('#toDate').datetimepicker({
+									id: "toDatePicker",
+									pickTime: false,
+									language: $.i18n.browserLang()
+								}).on('changeDate', function(e) {
+								  	$('div.bootstrap-datetimepicker-widget.dropdown-menu').attr("style","display:none");
+								});
+							});
+						</script>
+						<!-- <label>Select Feature to show:</label> -->
+						<select id="featureSelector" multiple="multiple">
+							<option id="fea1" value="feature1">Feature1</option>
+							<option id="fea2" value="feature2">Feature2</option>
+							<option id="fea3" value="feature3">Feature3</option>
+							<option id="fea4" value="feature4">Feature4</option>
+							<option id="fea5" value="feature5">Feature5</option>
+							<option id="fea6" value="feature6">Feature6</option>
+							<option id="fea7" value="feature7">Feature7</option>
+							<option id="fea8" value="feature8">Feature8</option>
+							<option id="fea9" value="feature9">Feature9</option>
+							<option id="fea10" value="feature10">Feature10</option>
+							<option id="fea11" value="feature11">Feature11</option>
+							<option id="fea12" value="feature12">Feature12</option>
+						</select>
+						<script type="text/javascript">
+							$(function() {   
+				    			$("#featureSelector").multiselect({
+				    				minWidth: 334,
+				    				noneSelectedText: "Select Feature to show",
+				    				selectedList:20,
+				    				close: function (e) {
+										console.debug($("#featureSelector").val());
+				    				}
+				    			})
+							});
+						</script>
+						<div class="panel panel-info" style="max-height: 100px;">
+							<div class="panel-heading" style="padding: 5px;">
+								<label>Customer ID: </label><label>TX1212321</label>
+								<span style="float: right;">
+									<label>Reward Gain: </label><label>299</label>
+								</span>
+							</div>
+							<table class="table table-striped table-hover">
+								<tbody>
+									<tr>
+										<td>Column 1</td>
+										<td>2006-02-27</td>
+										<td>2015-02-02</td>
+									</tr>
+									<tr>
+										<td>Feature 1</td>
+										<td>Level 1</td>
+										<td>Level 3</td>
+									</tr>
+									<tr>
+										<td>Feature 2</td>
+										<td>1000</td>
+										<td>2000</td>
+									</tr>
+									<tr>
+										<td>Feature 3</td>
+										<td>True</td>
+										<td>False</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<hr/>
+						<div class="panel panel-info">
+							<div class="panel-heading" style="padding: 5px;">
+								<label>Rules</label><span class="badge" style="float:right;">seg 1</span>
+							</div>
+							<table class="table table-striped table-hover">
+								<tbody>
+									<tr>
+										<td>Age</td>
+										<td>&lt;</td>
+										<td>20</td>
+									</tr>
+									<tr>
+										<td>Level</td>
+										<td>is</td>
+										<td>Level 2</td>
+									</tr>
+									<tr>
+										<td>Feature 3</td>
+										<td>=</td>
+										<td>2000</td>
+									</tr>
+									<tr>
+										<td>Feature 4</td>
+										<td>>=</td>
+										<td>2012</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading" style="padding: 5px;">
+								<label>Segment Info</label><span class="badge" style="float:right;">seg 1</span>
+							</div>
+							<table class="table table-striped table-hover">
+								<tbody>
+									<tr>
+										<td>Reward</td>
+										<td>200</td>
+									</tr>
+									<tr>
+										<td>Average Reward</td>
+										<td>100</td>
+									</tr>
+									<tr>
+										<td>Size</td>
+										<td>200</td>
+									</tr>
+									<tr>
+										<td>LTV</td>
+										<td>212</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-xs-7">
+						<div id="customerNextBestPath" style="width: 500px;height:300px;margin:20px 0 20px;"></div>
+						<script type="text/javascript" src="../../script/chart/modelLiftChart.js"></script>
+						<script type="text/javascript">
+							var modelName = sessionStorage.getItem("modelName");
+							$.get("../../nba/model/" + modelName, function(model) {
+								var zoomPanBoolean=false;
+								createSpcifiedModelChart(model, "customerNextBestPath",zoomPanBoolean);
+							}, "json");
+						</script>
+						<div>
+							<table>
+								<tr style="height: 40px;">
+									<td><input type="checkbox" id="chk_history"></td>
+									<td><label style="width: 70px;line-height:15px;">History</label></td>
+									<td>
+										<div id="history_seg" style="white-space: nowrap;width:410px;overflow-x:auto">
+											<button type="button" class="btn btn-link">seg 1</button>
+											<button type="button" class="btn btn-link">seg 2</button>
+											<button type="button" class="btn btn-link">seg 3</button>
+											<button type="button" class="btn btn-link">seg 4</button>
+											<button type="button" class="btn btn-link">seg 5</button>
+											<button type="button" class="btn btn-link">seg 6</button>
+											<button type="button" class="btn btn-link">seg 7</button>
+											<button type="button" class="btn btn-link">seg 8</button>
+											<button type="button" class="btn btn-link">seg 9</button>
+											<button type="button" class="btn btn-link">seg 10</button>
+											<button type="button" class="btn btn-link">seg 11</button>
+											<button type="button" class="btn btn-link">seg 12</button>
+											<button type="button" class="btn btn-link">seg 13</button>
+											<button type="button" class="btn btn-link">seg 14</button>
+											<button type="button" class="btn btn-link">seg 15</button>
+											<button type="button" class="btn btn-link">seg 16</button>
+											<button type="button" class="btn btn-link">seg 17</button>
+											<button type="button" class="btn btn-link">seg 18</button>
+											<button type="button" class="btn btn-link">seg 19</button>
+											<button type="button" class="btn btn-link">seg 20</button>
+										</div>
+									</td>
+								</tr>
+								<tr style="height: 40px;">
+									<td><input type="checkbox" id="chk_LTV"></td>
+									<td><label style="width: 70px;line-height:15px;">Modal Opt Max LTV</label></td>
+									<td>
+										<div id="LTV_seg" style="white-space: nowrap;width:410px;overflow-x:auto">
+											<button type="button" class="btn btn-link">seg 1</button>
+											<button type="button" class="btn btn-link">seg 2</button>
+											<button type="button" class="btn btn-link">seg 3</button>
+											<button type="button" class="btn btn-link">seg 4</button>
+											<button type="button" class="btn btn-link">seg 5</button>
+											<button type="button" class="btn btn-link">seg 6</button>
+											<button type="button" class="btn btn-link">seg 7</button>
+											<button type="button" class="btn btn-link">seg 8</button>
+											<button type="button" class="btn btn-link">seg 9</button>
+											<button type="button" class="btn btn-link">seg 10</button>
+											<button type="button" class="btn btn-link">seg 11</button>
+											<button type="button" class="btn btn-link">seg 12</button>
+											<button type="button" class="btn btn-link">seg 13</button>
+											<button type="button" class="btn btn-link">seg 14</button>
+											<button type="button" class="btn btn-link">seg 15</button>
+											<button type="button" class="btn btn-link">seg 16</button>
+											<button type="button" class="btn btn-link">seg 17</button>
+											<button type="button" class="btn btn-link">seg 18</button>
+											<button type="button" class="btn btn-link">seg 19</button>
+											<button type="button" class="btn btn-link">seg 20</button>
+										</div>
+									</td>
+								</tr>
+								<tr style="height: 40px;">
+									<td><input type="checkbox" id="chk_prob"></td>
+									<td><label style="width: 70px;line-height:15px;">Modal Opt Max Prob</label></td>
+									<td>
+										<div id="prob_seg" style="white-space: nowrap;width:410px;overflow-x:auto">
+											<button type="button" class="btn btn-link">seg 1</button>
+											<button type="button" class="btn btn-link">seg 2</button>
+											<button type="button" class="btn btn-link">seg 3</button>
+											<button type="button" class="btn btn-link">seg 4</button>
+											<button type="button" class="btn btn-link">seg 5</button>
+											<button type="button" class="btn btn-link">seg 6</button>
+											<button type="button" class="btn btn-link">seg 7</button>
+											<button type="button" class="btn btn-link">seg 8</button>
+											<button type="button" class="btn btn-link">seg 9</button>
+											<button type="button" class="btn btn-link">seg 10</button>
+											<button type="button" class="btn btn-link">seg 11</button>
+											<button type="button" class="btn btn-link">seg 12</button>
+											<button type="button" class="btn btn-link">seg 13</button>
+											<button type="button" class="btn btn-link">seg 14</button>
+											<button type="button" class="btn btn-link">seg 15</button>
+											<button type="button" class="btn btn-link">seg 16</button>
+											<button type="button" class="btn btn-link">seg 17</button>
+											<button type="button" class="btn btn-link">seg 18</button>
+											<button type="button" class="btn btn-link">seg 19</button>
+											<button type="button" class="btn btn-link">seg 20</button>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

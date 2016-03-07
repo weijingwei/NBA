@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>Model Detail</title>
+<link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon" />
+<link href="../../style/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../style/css/dashboard.css" rel="stylesheet">
+<link href="../../style/css/model/trailsList.css" rel="stylesheet">
+<script type="text/javascript" src="../../script/jquery-1.8.2.min.js"></script>
+<script type="text/javascript"
+	src="../../script/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.time.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.symbol.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.axislabels.js"></script>
+<script type="text/javascript"
+	src="../../script/flot/jquery.flot.navigate.js"></script>
+<script type="text/javascript"
+	src="../../script/chart/modelLiftChart.js"></script>
+	<script	type="text/javascript" src="../../script/chart/tooltipMessage.js"></script>
+	
+<script type="text/javascript" src="../../script/chart/tooltip.js"></script>
+<script type="text/javascript"
+	src="../../script/chart/iterationAdvantageChart.js"></script>
+<script type="text/javascript" src="../../script/model/modelDetail.js"></script>
+<script type="text/javascript" src="../../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../../i18n/i18n.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<p class="mynavbar-text" >IBM Next Best Action</p>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a id="home" href="../trailsList.html">Home</a></li>
+				    </ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li style="padding:15px">
+							<img alt="IBM Logo" src="../../image/headerLogo.png">
+						</li>
+				    </ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="page-format-fixed">
+		<p2>&nbsp;<a href="../trailsList.html" id="model_viewer_navigater">Model Viewer  ></a>&nbsp;&nbsp;
+		<a href="#" id="iteration_selection_navigater"><label style="font-size: 30" id="model_selection">Model Selection</label></a></p2>
+		<!-- <h3 id="model_selection">Model Selection</h3> -->
+		&nbsp;<p1 id="description">Each chart represents a group of models,  each iteration represents an individual model.<br> Select one chart to view detailed model information.</p1>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-3 col-lg-2 sidebar sidebar-pos">
+				<span id="selectedThreeWarning" style="display: none;color: red"></span>
+				<ul id="modelIterationList" class="list-group">
+				</ul>
+				<div>
+					<a id="iterationComparison" href="javascript:void(0)" role="button" aria-label="Left Align">
+						<span class="glyphicon_liftcomparison glyphicon-signal" id="details" aria-hidden="true">Details</span>
+					</a>
+					&nbsp;
+					&nbsp;
+					&nbsp;	
+					&nbsp;
+					<a id="resetBtn" role="button" href="javascript:void(0)" aria-label="Right Align">
+						<span class="glyphicon_liftcomparison glyphicon-share-alt" id="reset" aria-hidden="true">Reset</span>
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-8 col-lg-9 title-format title-pos col-xs-offset-1 col-lg-offset-0">
+				<h3 class="col-xs-offset-1 col-lg-offset-0">
+				 	<table>
+					  <tr>
+					      <td id="modelTitle">Model Name:</td>
+					      <td id='modelDesc' class='tittle-format-2l'></td>
+					  </tr>
+					  <tr>
+					       <td id="start_time">Start Time:</td>
+					       <td><span id='StartT' class='tittle-format-3l'></span></td>
+					  </tr>
+					  <tr>
+					       <td id="end_time">End Time:</td>
+					       <td><span id='EndT' class='tittle-format-3l'></span></td>
+					  </tr>
+					  <tr>
+					       <td id="duration">Duration:</td>
+					       <td><span id='DurationT' class='tittle-format-3l'></span></td>
+					  </tr>
+					</table>
+				</h3>
+			<!-- 		<a id='detail' class='textSize' role='button' href='javascript:void(0)'>
+					   <span  class='glyphicon glyphicon-info-sign'>More</span>
+					</a> -->
+		 		<div class="row placeholders col-xs-offset-1 col-lg-offset-0">
+					<div class="col-lg-6 col-xs-11">
+						<h3 id="reward_lift_chart">Reward Lift Chart <span style="color:gray;font-size: 20px; vertical-align:top;">*</span></h3>
+						<div style="width: 550px;height:350px;margin:0 auto" id="modelChart"></div>
+						<p id="introduction">*: Reward Lift Chart provide model estimated reward  value (Green line) comparing to historical reward value (Blue Line). For more info please see <a href="#">Reward Lift Chart Usage</a>.
+						</p>
+					</div>
+					<div class="col-lg-6 col-xs-11">
+						<h3 id="Convergence_Chart">Convergence Chart<span style="color:gray;font-size: 10px;vertical-align:top;">#</span></h3>
+						<div style="width: 550px;height:350px;margin:0 auto" id="advantageChart"></div>
+						<p id="introduction_iteration">#: Reward Lift helps to select the iteration(s) that has been optimized to the most extent. For more info please see <a href="#">Convergence Chart Usage</a></a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<div class="page-header">
+	<h1>
+		<label id=businessinsight>Business Insight</label>
+		<small id="description2">The circle the red,the value the lower.The size of the circle indicates the segments number.The color of line the black,the transition rate the bigger.Click on a segment to see it's details.</small>
+	</h1>
+</div>
+<div>
+	<input type="radio" id="maxProb" name="forceDataType" value="prob" checked="checked" onclick="displayBusinessInsight('');"><label for="maxProb" id="max_prob">Max Prob</label>
+	&nbsp;&nbsp;
+	<input type="radio" id="maxLTV" name="forceDataType" value="LTV" onclick="displayBusinessInsight('');"><label for="maxLTV" id="max_life_time_value">Max Life Time Value</label> 
+	&nbsp;&nbsp;
+	<input type="radio" name="forceDataType" value="all" onclick="displayBusinessInsight('');"><label for="all" id="all">All</label>
+	&nbsp;&nbsp;
+	<button id="btn_hideShowSelfConnection" onclick="hideShowSelfConnection('');" value="hidden">show self-connection</button>
+	&nbsp;&nbsp;
+	<input type="text" id="searchSegment" placeholder="Fill in the segment id" onkeypress="enterSegmentSearching(event)">
+	<button onclick="displayBusinessInsight('')" id="search">Search</button>
+	&nbsp;&nbsp;
+	<a href="#"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true" data-toggle="modal" data-target=".arrowForceModal" onclick="displayBusinessInsight('Modal')"></span></a>
+</div>
+<div class="container-fluid" style="height: 100%; position: relative;">
+	<div class="row">
+		<div class="col-xs-12 col-lg-6">
+			<span><label name="lowValue">Low Value</label> <img style="height: 18px;width: 100px;" src="../../image/spectrum.jpg"> <label name="highValue">High Value</label></span>
+			<!-- segment chart -->
+			<div id="businessInsightContent" style="height: 500px; width: 600px;"></div>
+		</div>
+		<div class="col-xs-12 col-lg-6">
+			<div class="row">
+				<div class="col-xs-12 col-lg-12">
+				<!-- segment info begin -->
+					<div style=" overflow-y: auto;">
+						<div><span id="segment_Id">Segment Id: </span> <span id="selectedSegmentId"></span></div>
+						<ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation" class="active"><a href="#sc" aria-controls="sc" role="tab" data-toggle="tab" id="segment_category">Category</a></li>
+						    <li role="presentation"><a href="#rule" aria-controls="rule" role="tab" data-toggle="tab" id=role>Rule</a></li>
+						    <li role="presentation"><a href="#ca" aria-controls="ca" role="tab" data-toggle="tab" id="CAA">Coefficients and Allocations</a></li>
+						    <li role="presentation"><a href="#ss" aria-controls="ss" role="tab" data-toggle="tab" id="segment_stats">Segment Stats</a></li>
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class='tab-pane segmentInfo-Table active' style="text-align: left;" id="sc">
+						    	<table class='table table-striped' style='margin-bottom:0;'>
+					    			<thead>
+										<tr>
+											<th id="best">Best</th>
+											<th id="better">Better</th>
+											<th id="normal">Normal</th>
+											<th id="worse">Worse</th>
+											<th id="worst">Worst</th>
+										</tr>
+									</thead>
+					    		</table>
+					    		<table id="segmentCategroy" class='table table-striped table-hover' role='table-ctxt'></table>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="rule" style="text-align: left;"></div>
+						    <div role="tabpanel" class="tab-pane segmentInfo-Table" style="text-align: left;" id="ca">
+					    		<table class='table table-striped' style='margin-bottom:0;'>
+					    			<thead>
+										<tr>
+											<th id="action">Action</th>
+											<th id="coefficient">Coefficient</th>
+											<th id="actual_count">Actual Count</th>
+											<th id="allocation_count">Allocation Count</th>
+										</tr>
+									</thead>
+					    		</table>
+					    		<table id="segmentActionStat" class='table table-striped table-hover' role='table-ctxt'></table>
+						    </div>
+						    <div role="tabpanel" class='tab-pane segmentInfo-Table' style="text-align: left;" id="ss">
+						    	<table class='table table-striped' style='margin-bottom:0;'>
+					    			<thead>
+										<tr>
+											<th id="measure">Measure</th>
+											<th id="value">Value</th>
+										</tr>
+									</thead>
+					    		</table>
+					    		<table id="segmentInfo" class='table table-striped table-hover' role='table-ctxt'></table>
+						    </div>
+						</div>
+					</div>
+					<!-- segment info end -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal window begin -->
+<div id="arrowForceModalWindow" class="modal fade arrowForceModal" role="dialog" aria-labelledby="arrowForceModalWindow">
+	<div class="modal-dialog modal-lg" style="width: 1000px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<input type="radio" id="maxProbModal" name="forceDataTypeModal" value="prob" checked="checked" onclick="displayBusinessInsight('Modal');"><label for="maxProb" id="max_prob1">Max Prob</label>
+				&nbsp;&nbsp;
+				<input type="radio" id="maxLTVModal" name="forceDataTypeModal" value="LTV" onclick="displayBusinessInsight('Modal');"><label for="maxLTV" id="max_life_time_value1">Max Life Time Value</label> 
+				&nbsp;&nbsp;
+				<input type="radio" name="forceDataTypeModal" value="all" onclick="displayBusinessInsight('Modal');"><label for="all" id="all1">All</label>
+				&nbsp;&nbsp;
+				<button id="btn_hideShowSelfConnectionModal" onclick="hideShowSelfConnection('Modal');" value="hidden">show self-connection</button>
+				&nbsp;&nbsp;
+				<input type="text" id="searchSegmentModal" placeholder="Fill in the segment id" onkeypress="enterSegmentSearching(event)">
+			
+				<button onclick="displayBusinessInsight('Modal')" id="searchModal">Search</button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<div id="businessInsightContentModal" style="height: 800px; width: 970px;" align="center"></div>
+				<div style=" overflow-y: auto; height: 470px;">
+					<div><span id="segment_Id1">Segment Id: </span> <span id="selectedSegmentIdModal"></span></div>
+					<ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#scModal" aria-controls="sc" role="tab" data-toggle="tab" id="segment_category1">Category</a></li>
+					    <li role="presentation"><a href="#ruleModal" aria-controls="rule" role="tab" data-toggle="tab" id="rule1">Rule</a></li>
+					    <li role="presentation"><a href="#caModal" aria-controls="ca" role="tab" data-toggle="tab" id="CAA1">Coefficients and Allocations</a></li>
+					    <li role="presentation"><a href="#ssModal" aria-controls="ss" role="tab" data-toggle="tab" id="segment_stats1">Segment Stats</a></li>
+					</ul>
+					<div class="tab-content">
+						<div role="tabpanel" class='tab-pane segmentInfo-Table active' style="text-align: left;" id="scModal">
+					    	<table class='table table-striped' style='margin-bottom:0;'>
+				    			<thead>
+									<tr>
+										<th id="bestModal">Best</th>
+										<th id="betterModal">Better</th>
+										<th id="normalModal">Normal</th>
+										<th id="worseModal">Worse</th>
+										<th id="worstModal">Worst</th>
+									</tr>
+								</thead>
+				    		</table>
+				    		<table id="segmentCategroyModal" class='table table-striped' role='table-ctxt'></table>
+			    		</div>
+			    		<div role="tabpanel" class="tab-pane" id="ruleModal" style="text-align: left;"></div>
+			    		<div role="tabpanel" class="tab-pane segmentInfo-Table" style="text-align: left;" id="caModal">
+				    		<table class='table table-striped' style='margin-bottom:0;'>
+				    			<thead>
+									<tr>
+										<th id="action1">Action</th>
+										<th id="coefficient1">Coefficient</th>
+										<th id="actual_count1">Actual Count</th>
+										<th id="allocation_count1">Allocation Count</th>
+									</tr>
+								</thead>
+				    		</table>
+				    		<table id="segmentActionStatModal" class='table table-striped table-hover' role='table-ctxt'></table>
+					    </div>
+					    <div role="tabpanel" class='tab-pane segmentInfo-Table' style="text-align: left;" id="ssModal">
+					    	<table class='table table-striped' style='margin-bottom:0;'>
+					    		<thead>
+									<tr>
+										<th id="measure1">Measure</th>
+										<th id="value1">Value</th>
+									</tr>
+								</thead>
+				    		</table>
+				    		<table id="segmentInfoModal" class='table table-striped table-hover' role='table-ctxt'></table>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal window end -->
+<script type="text/javascript">
+	displayBusinessInsight("");
+	$('#arrowForceModalWindow').on('hide.bs.modal', function (e) {
+		displayBusinessInsight("");
+	});
+	$('#arrowForceModalWindow').on('hidden.bs.modal', function (e) {
+		$("#searchSegmentModal").val("");
+	});
+	$("#iterationComparison.show_self_connection").html($.i18n.prop("iterationComparison.iterationComparison.show_self_connection"));
+	$("#iterationComparison.hide_self_connection").html($.i18n.prop("iterationComparison.iterationComparison.hide_self_connection"));
+	$("#search").html($.i18n.prop("iterationComparison.search"));
+	$("#searchModal").html($.i18n.prop("iterationComparison.searchModal"));
+	$("#all").html($.i18n.prop("iterationComparison.all"));
+	$("#role").html($.i18n.prop("iterationComparison.role"));
+	$("#CAA").html($.i18n.prop("iterationComparison.CAA"));
+	$("#segment_stats").html($.i18n.prop("iterationComparison.segment_stats"));
+	$("#segment_Id").html($.i18n.prop("iterationComparison.segment_Id"));
+	$("#rule1").html($.i18n.prop("iterationComparison.rule1"));
+	$("#CAA1").html($.i18n.prop("iterationComparison.CAA1"));
+	$("#segment_stats1").html($.i18n.prop("iterationComparison.segment_stats1"));
+	$("#segment_Id1").html($.i18n.prop("iterationComparison.segment_Id1"));
+	$("#max_prob1").html($.i18n.prop("iterationComparison.max_prob1"));
+	$("#max_life_time_value1").html($.i18n.prop("iterationComparison.max_life_time_value1"));
+	$("#all1").html($.i18n.prop("iterationComparison.all1"));
+	$("#btn_hideShowSelfConnectionModal").html($.i18n.prop("iterationComparison.btn_hideShowSelfConnectionModal"));
+	$("#action").html($.i18n.prop("iterationComparison.action"));
+	$("#coefficient").html($.i18n.prop("iterationComparison.coefficient"));
+	$("#actual_count").html($.i18n.prop("iterationComparison.actual_count"));
+	$("#allocation_count").html($.i18n.prop("iterationComparison.allocation_count"));
+	$("#measure").html($.i18n.prop("iterationComparison.measure"));
+	$("#value").html($.i18n.prop("iterationComparison.value"));
+	$("#action1").html($.i18n.prop("iterationComparison.action1"));
+	$("#coefficient1").html($.i18n.prop("iterationComparison.coefficient1"));
+	$("#actual_count1").html($.i18n.prop("iterationComparison.actual_count1"));
+	$("#allocation_count1").html($.i18n.prop("iterationComparison.allocation_count1"));
+	$("#measure1").html($.i18n.prop("iterationComparison.measure1"));
+	$("#value1").html($.i18n.prop("iterationComparison.value1"));
+	$("#searchSegment").attr("placeholder",$.i18n.prop("iterationComparison.searchSegment"));
+	$("#searchSegmentModal").attr("placeholder",$.i18n.prop("iterationComparison.searchSegmentModal"));
+	$("label[name='lowValue']").each(function() {$(this).html($.i18n.prop("iterationComparison.low_value"));});
+	$("label[name='highValue']").each(function() {$(this).html($.i18n.prop("iterationComparison.high_value"));});
+	$("#segment_category").html($.i18n.prop("iterationComparison.arrowforce.category"));
+	$("#segment_category1").html($.i18n.prop("iterationComparison.arrowforce.category"));
+	$("#best").html($.i18n.prop("iterationComparison.arrowforce.category.best"));
+	$("#bestModal").html($.i18n.prop("iterationComparison.arrowforce.category.best"));
+	$("#better").html($.i18n.prop("iterationComparison.arrowforce.category.better"));
+	$("#betterModal").html($.i18n.prop("iterationComparison.arrowforce.category.better"));
+	$("#normal").html($.i18n.prop("iterationComparison.arrowforce.category.normal"));
+	$("#normalModal").html($.i18n.prop("iterationComparison.arrowforce.category.normal"));
+	$("#worse").html($.i18n.prop("iterationComparison.arrowforce.category.worse"));
+	$("#worseModal").html($.i18n.prop("iterationComparison.arrowforce.category.worse"));
+	$("#worst").html($.i18n.prop("iterationComparison.arrowforce.category.worst"));
+	$("#worstModal").html($.i18n.prop("iterationComparison.arrowforce.category.worst"));
+	$("#maxProb").html($.i18n.prop("iterationComparison.maxProb"));
+	$("#add").html($.i18n.prop("iterationComparison.add"));
+	$("#show").html($.i18n.prop("iterationComparison.show"));
+	$("#btn_hideShowSelfConnection").html($.i18n.prop("iterationComparison.btn_hideShowSelfConnection"));
+	$("#max_prob").html($.i18n.prop("iterationComparison.max_prob"));
+	$("#max_life_time_value").html($.i18n.prop("iterationComparison.max_life_time_value"));
+	$("#businessinsight").html($.i18n.prop("iterationComparison.businessinsight"));
+	$("#description2").html($.i18n.prop("iterationComparison.description2"));
+</script>

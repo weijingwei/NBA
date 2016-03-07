@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../script/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../script/chart/d3.min.js"></script>
+<script type="text/javascript" src="sankey2.js"></script>
+<script type="text/javascript" src="sankeyChart2.js"></script>
+<script type="text/javascript" src="../script/chart/arrowForce.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../i18n/i18n.js"></script>
+<style type="text/css">
+    .node {
+	  cursor: move;
+	}
+	
+	.node text {
+	  pointer-events: none;
+	  text-shadow: 0 1px 0 #fff;
+	}
+	
+	path:hover {
+	  stroke-opacity: .9;
+	  fill-opacity: .9;
+	}
+</style>
+</head>
+<body>
+	<div id="sankey" style="width: 700px; height: 1000px;"></div>
+	<div id="arrowForce" style="width: 700px; height: 500px;"></div>
+</body>
+<script type="text/javascript">
+	sankeyChart2.clickCallBack = function(d, i) {
+		sankeyChart2.highlightNode("sankey", d.name);
+	}
+	sankeyChart2.drawSankey("TAXDEMO", "6", "LTV", "sankey");
+	arrowForce.clickCallBack = function(d, i) {
+		arrowForce.highlightNode("arrowForce", d.name);
+	}
+	arrowForce.drawArrowForce("TAXDEMO", "6", "LTV", "arrowForce");
+</script>
+</html>

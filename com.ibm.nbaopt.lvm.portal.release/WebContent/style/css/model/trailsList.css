@@ -1,0 +1,288 @@
+.gray{
+	color:#CCC
+}
+.black{
+	color:#000
+}
+
+.searchDiv{
+	width:28%;
+	height:100%;
+	font-size:20px;
+	float:right;
+}
+.modelslist{
+	width:30%;
+	height:10%;
+    float:right;  
+}
+.mynavbar-text {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color:#fff;
+}
+.select{
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	float: left;
+	min-width: 160px;
+	width:20%;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	list-style: none;
+	font-size: 14px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	background-clip: padding-box
+}
+.inputText{
+	top: 100%;
+	left: 0;
+	min-width: 160px;
+	z-index: 1000;
+	width:30%;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	list-style: none;
+	font-size: 14px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	background-clip: padding-box	
+}
+.button{
+	height:100%;
+	width:10%;
+}
+.rightAlign{
+	float:right;
+}
+
+.col-xs-offset-a {
+  margin-left:7.5%;
+}
+
+.textSize{
+	font-size:20px;
+}
+
+.page-format{
+	border-bottom-style: inset;
+	border-bottom-color: gray;
+	border-bottom-size: 1px;
+	height:100%;
+}
+
+.page-format-fixed {
+	border-bottom-style: inset;
+	border-bottom-color: gray;
+	border-bottom-size: 1px;
+	position:fixed;
+	z-index: 1030;
+	width:100%;
+	background-color: white;
+}
+
+.page-format-fixed h3 {
+	font-size: 40px;
+	font-weight: bold;
+	margin-top:10px;
+}
+
+.page-format h3 {
+	font-size: 40px;
+	font-weight: bold;
+	margin-top:10px;
+}
+
+.page-format p {
+	height:100%;
+	width:60%;
+	color: gray;
+	margin-right:10%;
+	margin-bottom: -3px;
+	float:left;
+	font-size: 20px;
+}
+.page-format p1 {
+	height:100%;
+	width:48%;
+	color: gray;
+	margin-right:10%;
+	font-size: 20px;
+}
+.page-format p2{
+	margin-top: 10px;
+	display:block;
+	font-size:20px;
+}
+
+.page-format-fixed span a {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.page-format-fixed p {
+	height:100%;
+	width:60%;
+	color: gray;
+	margin-right:10%;
+	margin-bottom: -3px;
+	float:left;
+	font-size: 20px;
+}
+.page-format-fixed p1 {
+	height:100%;
+	width:48%;
+	color: gray;
+	margin-right:10%;
+	font-size: 20px;
+}
+
+.page-format-fixed p2{
+	margin-top: 10px;
+	display:block;
+	font-size:20px;
+}
+
+.sidebar-pos{
+	top:151px;
+	float:clear;
+}
+
+.content-pos{
+	margin-top:80px;
+	margin-left: 16.6667%;
+	min-height: 5px;
+	}
+
+.title-pos{
+	margin-left: 16.6667%;
+	top:100px;
+	width: 83.3333%;
+	min-height: 5px;
+	height: 100%;
+	overflow-y:auto;
+}
+
+.table-pos{
+	height: 100%;
+	overflow-y:auto;
+//	clear:both;
+//	border-top-width: 3px;
+//	border-top-color: #EAEAEA;
+//	border-top-style: solid;
+	float:left;
+	width:100%;
+}
+
+.table-pos-seg{
+	height: 100%;
+	overflow-y:auto;
+	float:left;
+	width:100%;
+//	border-top-width: 3px;
+//	border-top-color: #EAEAEA;
+//	border-top-style: solid;
+//	position:fixed;
+}
+
+.featureChart {
+	float: left;
+	margin-left:1%;
+	
+}
+.segment-Table {
+	width:100%;
+	font-size:18px;
+}
+.segment-Table th{
+	background-color:#428BCA;
+	font-size: 18px;
+}
+
+.segmentInfo-Table th{
+	background-color:#428BCA;
+	white-space: nowrap;
+}
+
+.segmentInfo-Table td{
+	white-space: nowrap;
+}
+
+.trans-chart {
+	width:48%;
+	height:400px;
+	background-color:red;
+	float: right;
+}
+.trans-table {
+	width:48%;
+	height:360px;
+	background-color:green;
+	float: right;
+}
+.trans-bar {
+	width:650px;
+	height:700px;
+	margin:0 auto; 
+	float: left;
+}
+.seg-chart
+{	
+	width:48%;
+	height:700px;
+	background-color:red;
+	float: right;
+	
+}
+.more {
+	float: right;
+	font-size: 30px;
+}
+a:hover { text-decoration:none;}
+
+.toggler { width: 240px; height: 100%; margin-top:0px; margin-left:0;}
+  #button { padding: .5em 1em; text-decoration: none; }
+  #effect { width: 240px; height: 100%; margin-top:0px; margin-left:0; padding: 0.2em; position: fixed; z-index:9999; }
+  #effect h3 { margin: 0px; padding: 0.2em; text-align: left; }
+
+.panel-heading label {
+	font-size: smaller;
+}
+
+#history_seg a {
+	color: #0099FF
+}
+
+#history_seg .btn-link {
+	color: #0099FF;
+	padding: 1px 5px;
+}
+
+#LTV_seg a {
+	color: #990000
+}
+
+#LTV_seg .btn-link {
+	color: #990000;
+	padding: 1px 5px;
+}
+
+
+#prob_seg a {
+	color: #CC6600
+}
+
+#prob_seg .btn-link {
+	color: #CC6600;
+	padding: 1px 5px;
+}

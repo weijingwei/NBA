@@ -1,0 +1,18 @@
+.detail-model{
+	width: 550px; 
+	height:550px;
+	margin: 0 auto;
+}
+
+.scroll{
+	overflow-x:auto;
+	overflow-y:auto;
+	height:100px;
+}
+
+.mynavbar-text {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color:#fff;
+}
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8"/>
+		<title>Iteration Comparison</title>
+		<link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon" />
+		<link href="../../style/css/model/trailsList.css" rel="stylesheet">
+		<link href="../../style/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="../../style/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="../../style/css/dashboard.css" rel="stylesheet">
+		<script type="text/javascript" src="../../script/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="../../script/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.time.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.stack.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.pie.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.symbol.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.axislabels.js"></script>
+		<script type="text/javascript" src="../../script/flot/jquery.flot.navigate.js"></script>
+		<script type="text/javascript" src="../../script/chart/sequenceStackChart.js"></script>
+		<script type="text/javascript" src="../../script/chart/iterationPieChart.js"></script>
+		<script type="text/javascript" src="../../script/chart/sequenceStackChart.js"></script>
+		<script type="text/javascript" src="../../script/chart/featureBarChart.js"></script>
+		<script type="text/javascript" src="../../script/chart/tooltipMessage.js"></script>
+		<script type="text/javascript" src="../../script/iteration/iterationComparison.js"></script>
+		<script type="text/javascript" src="../../script/chart/d3.min.js"></script>
+		<script type="text/javascript" src="../../script/chart/arrowForce.js"></script>
+		<script type="text/javascript" src="../../script/jquery.i18n.properties-min-1.0.9.js"></script>
+		<script type="text/javascript" src="../../i18n/i18n.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<p class="mynavbar-text">IBM Next Best Action</p>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a id="home" href="../trailsList.html">Home</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li style="padding: 15px"><img alt="IBM Logo" src="../../image/headerLogo.png"></li>
+				</ul>
+			</div>
+		</nav>
+	
+		<div class="page-format-fixed">
+			<p2>&nbsp;<a href="../trailsList.html" id="model_viewer_navigater">Model Viewer ></a>&nbsp;&nbsp;
+			<a href="#" onclick='javascript:history.back();' id="model_selection_navigater">Model Selection ></a>&nbsp;&nbsp;
+			<a href="#" id="iteration_selection_navigater"><label style="font-size: 30" id="iteration_selection">Iteration Selection</label></a>
+			</p2>
+			<!-- <h3 id="iteration_selection">Iteration Selection</h3> -->
+			&nbsp;<p1 id="description">Each Iteration represent an individual model, select model from Segments, features, <br>
+			Transaction, Action allocation, Resource Allocation and Optimization perspectives. </p1>
+		</div>
+	
+		<div id="tabs" class="container-fluid">
+			<div class="row">
+				<div class="col-xs-2 sidebar sidebar-pos">
+					<ul class="nav nav-sidebar tabs" style="margin-top: 100px;">
+						<li class="active"><a href="#feature" id="feature_count_navigater">Feature Count</a></li>
+						<li><a href="#segment" id="segments_navigater">Segments</a></li>
+						<li class="hidden"><a href="#transaction">Transaction</a></li>
+						<li class="hidden"><a href="#action-allocation">Action Allocation</a></li>
+						<li class="hidden"><a href="#res-allocation">Resource Allocation</a></li>
+						<li><a href="#segmentAction" id="segment_action_navigater">Segment Action</a></li>
+						<li class="hidden"><a href="#segmentOptimizer">Optimization</a></li>
+						<li><a href="#businessInsight" id="businessinsight_navigater">Business Insight</a></li>
+						<li><a href="#customerAnalysis" id="customerAnalysis_navigater">Customer Analysis</a></li>
+					</ul>
+				</div>
+				<div>
+					<div id="feature" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label id="feature_count">Feature Count</label>
+								<small id="note">The count of features used during segmentation in each iteration. For more info check <a href="#">Feature Count Usage</a>. </small>
+								<!-- <a role="button" id="viewMostUsedFeature" href="javascript:void(0)" data-toggle="modal" data-target="#myFeatureModal" style="float:right">
+		  								<span class="glyphicon_liftcomparison glyphicon-th-large" aria-hidden="false">Detail</span>
+									</a> -->
+							</h1>
+						</div>
+						<div class="iteration-filter hidden">
+							<h3>Filter</h3>
+							<span>Range:</span>
+							<ul>
+								<li><a class="li-active" href="#">All</a></li>
+								<li><a href="#">Top 10</a></li>
+								<li><a href="#">Top 5</a></li>
+							</ul>
+							<span>Format:</span>
+							<ul>
+								<li><a href="#">Percentage</a></li>
+								<li><a class="li-active" href="#">Count</a></li>
+							</ul>
+						</div>
+						<div id="featureContent" class="table-pos col-xs-12 col-lg-10"></div>
+					</div>
+					<div id="segment" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label id="segments">Segments</label>
+								<small id="description1">list segments that identified customer groups. For more info <a href="#">Segments Usage</a>. </small>
+							</h1>
+						</div>
+						<div class="iteration-filter hidden">
+							<h3>Filter</h3>
+							<span>Range:</span>
+							<ul>
+								<li><a href="#">All</a></li>
+								<li><a class="li-active" href="#">Sampled Only</a></li>
+							</ul>
+						</div>
+						<div style="clear: both"></div>
+						<div>
+							<div id="segmentContent" class="table-pos-seg col-xs-12 col-lg-12"></div>
+							<div id="segmentTransChart" class="trans-chart hidden"></div>
+							<div id="segmentTransTable" class="trans-table hidden"></div>
+						</div>
+					</div>
+					<div id="transaction" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label>Transition: </label>
+								<small>Observe model reward changes with look ahead actions. For more info check <a href="#">Transition Usage</a>. </small>
+							</h1>
+						</div>
+						<div>
+							<div id="transactionChart" class="trans-bar"></div>
+							<div id="segmentTransTable" class="seg-chart"></div>
+						</div>
+						<a href="#" class="more">More>></a>
+					</div>
+					<div id="action-allocation" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label>Action Allocation: </label>
+								<small>Observe model assigned action with action limitations. For more info check <a href="#">Action allocation Usage</a>. </small>
+							</h1>
+						</div>
+						<a role="button" id="viewPieChart" href="javascript:void(0)" data-toggle="modal" data-target="#myModal" style="float: right"> <span class="glyphicon_liftcomparison glyphicon-th-large"
+							aria-hidden="false">Detail</span>
+						</a>
+						<div id='pieCharts' class="panel-body"></div>
+						<div class="panel panel-default">
+							<table id="actionAllocTable" class="table">
+							</table>
+						</div>
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Pie Chart Slider</h4>
+									</div>
+									<div class="modal-body">
+										<div id="pieChartGroup" class="carousel slide" data-interval="false" data-ride="carousel" style="display: none">
+											<div class="carousel-inner" id="pieChartList" role="listbox"></div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<a href="#pieChartGroup" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span>
+										</a> <a href="#pieChartGroup" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span>
+										</a>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="res-allocation" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label>Resource Allocation: </label>
+								<small>Observe model assigned resources with resource limitations. For more info check <a href="#">Resource allocation Usage</a>. </small>
+							</h1>
+						</div>
+					</div>
+					<div id="segmentAction" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label id="segment_action">Segment Action</label>
+								<small id="note1">Action allocation of segments in each iteration.</small>
+							</h1>
+						</div>
+						<div id="segmentActionContent" class="table-pos-seg col-xs-12 col-lg-12"></div>
+					</div>
+					<div id="segmentOptimizer" class="main tab_content content-pos">
+						<div class="page-header">
+							<h1>
+								<label>Optimization</label>
+								<small>Optimize Action and resource allocation based on set-up bound. For more info check <a href="#">Optimization Usage</a>. </small>
+							</h1>
+						</div>
+					</div>
+					<div id="businessInsight" class="main tab_content content-pos">
+						<script type="text/javascript">
+							$('#businessInsight').load('businessInsight.html');
+						</script>
+					</div>
+					<div id="customerAnalysis" class="main tab_content content-pos">
+						<script type="text/javascript">
+							$('#customerAnalysis').load('customerAnalysis.html');
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

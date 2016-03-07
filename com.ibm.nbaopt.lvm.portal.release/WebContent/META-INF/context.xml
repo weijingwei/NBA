@@ -1,0 +1,18 @@
+<Context>
+	<!-- <Resource auth="Container" driverClassName="com.ibm.db2.jcc.DB2Driver"
+		maxActive="10" maxIdle="5" maxWait="12000" name="jdbc/NBAOPT"
+		username="db2admin" password="jzp890206" type="javax.sql.DataSource"
+		url="jdbc:db2://127.0.0.1:50000/NBAOPT" /> -->
+	<Resource auth="Container" driverClassName="com.ibm.db2.jcc.DB2Driver"
+		maxActive="10" maxIdle="5" maxWait="12000" name="jdbc/NBAOPT"
+		username="db2admin" password="db2admin" type="javax.sql.DataSource"
+		url="jdbc:db2://127.0.0.1:50000/NBAODEMO" />  
+	<Resource auth="Container" driverClassName="com.ibm.db2.jcc.DB2Driver"
+		maxActive="10" maxIdle="5" maxWait="12000" name="jdbc/NBANEW"
+		username="weijingwei" password="Passw2rd" type="javax.sql.DataSource"
+		url="jdbc:db2://localhost:50000/NBANEW" />
+	<Resource auth="Container" driverClassName="com.ibm.db2.jcc.DB2Driver"
+		maxActive="10" maxIdle="5" maxWait="12000" name="jdbc/NBAOTEST"
+		username="weijingwei" password="Passw2rd" type="javax.sql.DataSource"
+		url="jdbc:db2://ibm249-r8l1tbz.cn.ibm.com:50000/NBAOTEST" />
+</Context>

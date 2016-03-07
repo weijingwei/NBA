@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Model List</title>
+<link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon" />
+<link href="../style/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../style/css/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
+<link href="../style/css/offcanvas.css" rel="stylesheet">
+<link href="../style/css/jquery-ui.css" rel="stylesheet">
+<link href="../style/css/model/trailsList.css" rel="stylesheet">
+<script src="../script/jquery-1.8.2.min.js"></script>
+<script src="../script/jquery-ui-1.8.24.custom.min.js"></script>
+<script src="../script/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../script/flot/jquery.flot.js"></script>
+<script type="text/javascript" src="../script/flot/jquery.flot.time.js"></script>
+<script type="text/javascript"
+	src="../script/flot/jquery.flot.symbol.js"></script>
+<script type="text/javascript"
+	src="../script/flot/jquery.flot.axislabels.js"></script>
+<script type="text/javascript"
+	src="../script/flot/jquery.flot.navigate.js"></script>
+<script type="text/javascript"
+	src="../script/chart/trailsList.js"></script>
+<script type="text/javascript"
+	src="../script/chart/modelLiftChart.js"></script>
+<script	type="text/javascript" src="../script/chart/tooltip.js"></script>
+<script	type="text/javascript" src="../script/chart/tooltipMessage.js"></script>
+<script type="text/javascript" src="../script/jquery.i18n.properties-min-1.0.9.js"></script>
+<script type="text/javascript" src="../i18n/i18n.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				
+				<p class="mynavbar-text" >IBM Next Best Action</p>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a id="home" href="#">Home</a></li>
+			    </ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li style="padding:15px">
+						<img alt="IBM Logo" src="../image/headerLogo.png">
+					</li>        			
+			    </ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<div class="col-xs-12 page-format">
+			<div>
+			<h3 id="modelViewer">Model Viewer</h3>
+			<p id="description">Each chart represents a group of models,  each iteration represents an individual model.<br> Select one chart to view detailed model information.
+			</p>
+				<div class="searchDiv">
+					<select id="selectModelCriteria" class="select">
+						<option value="name">Name</option>
+						<option value="iterationCount">Iteration</option>
+						<option value="description">Description</option>
+					</select>
+					&nbsp; <input id="searchKeyWord" class="inputText black" type="text">
+					&nbsp;
+					<a id="searchModel" role="button" href="javascript:void(0)"> <span
+						class="glyphicon glyphicon-search" aria-hidden="false"></span>
+					</a>
+<!-- 					<a role="button" id="button" href="javascript:void(0)"> <span -->
+<!-- 						class="glyphicon glyphicon-tasks" aria-hidden="false"></span> -->
+<!-- 					</a> -->
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div id="carousel-example-generic" class="carousel slide"
+			data-interval="false" data-ride="carousel">
+		<div id="effect" class="ui-widget-content ui-corner-all">
+			<a class="rightAlign" role="button" id="closeTable" href="javascript:void(0)"> <span
+						class="glyphicon glyphicon-remove" style="color:white" aria-hidden="false"></span>
+			</a>
+			<div class="ui-widget-header ui-corner-all">Basket</div>
+			<span id="selectedThreeWarning" style="display: none;color: red"></span>
+			<div class="panel panel-default ">
+				<div class="panel-heading">
+					<table id="infoTable" class="table">
+						<thead>
+							<tr class="active">
+								<th class="black">Name</th>
+								<th class="black">Iteration</th>
+								<!-- <th class="black">Description</th>
+						                <th class="black">Start</th>
+						                <th class="black">End</th>
+						                <th class="black">Time Cost</th>-->
+								<th class="black">Delete</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<a href="javascript:void(0)" role="button" id="modelComparison" aria-label="Left Align">
+					<span class="glyphicon_liftcomparison glyphicon-signal" aria-hidden="true">&nbsp;Compare</span>
+				</a>
+			</div>
+		
+		<!-- <a class="btn btn-default" id="modelComparison">Comparison</a> -->
+				</div>
+			<div class="carousel-inner container-fluid" id="carousel-inner" role="listbox">
+			</div>
+			<a class="left carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="prev"> <span
+				class="glyphicon glyphicon-chevron-left black"></span> 
+				<!--  <span class="sr-only">Previous</span>-->
+			</a> <a class="right carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right black"></span> 
+				<!-- <span class="sr-only">Next</span> -->
+			</a>
+		</div> 
+</body>
+</html>
